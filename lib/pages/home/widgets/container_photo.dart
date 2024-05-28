@@ -11,10 +11,6 @@ class ContainerPhoto extends GetWidget<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    Get.lazyPut(
-      () => HomeController(),
-    );
-
     return Container(
       margin: const EdgeInsets.all(10),
       height: 100,
