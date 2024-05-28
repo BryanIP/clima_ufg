@@ -1,4 +1,5 @@
 import 'package:clima_ufg/core/colors.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -21,6 +22,25 @@ class ContainerPhoto extends GetWidget {
                   .image,
               fit: BoxFit.cover),
           borderRadius: BorderRadius.circular(50.0)),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          Opacity(
+            opacity: 0.9,
+            child: Container(
+              height: 60,
+              width: 110,
+              decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                      bottomRight: Radius.circular(50.0),
+                      topLeft: Radius.circular(50.0)),
+                  gradient:
+                      LinearGradient(colors: [defaultBlue, defaultGreen])),
+            ),
+          )
+        ],
+      ),
     );
   }
 }
