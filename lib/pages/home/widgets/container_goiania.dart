@@ -4,8 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ContainerPhoto extends GetWidget<HomeController> {
-  const ContainerPhoto({
+class ContainerGoiania extends GetWidget<HomeController> {
+  const ContainerGoiania({
     super.key,
   });
 
