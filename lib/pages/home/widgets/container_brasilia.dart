@@ -42,7 +42,7 @@ class ContainerBrasilia extends GetWidget<HomeController> {
                   ])),
               child: Center(
                 child: Obx(() => Text(
-                      '${controller.temp}°',
+                      '${controller.humidity}°',
                       style: const TextStyle(
                           fontSize: 25.0,
                           fontWeight: FontWeight.bold,
