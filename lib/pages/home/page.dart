@@ -48,33 +48,39 @@ class HomePage extends GetView<HomeController> {
                   borderRadius: const BorderRadius.only(
                       bottomRight: Radius.circular(30.0)),
                 ),
-                child: Center(
-                  child: Container(
-                    height: Get.height * 0.05,
-                    width: Get.width * 0.7,
-                    decoration: BoxDecoration(
-                        border: Border.all(color: defaultBlue),
-                        borderRadius: BorderRadius.circular(30.0)),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 15.0, vertical: 5.0),
-                      child: TextFormField(
-                        cursorColor: defaultBlue,
-                        decoration: const InputDecoration(
-                            suffixIcon: Padding(
-                              padding: EdgeInsets.only(left: 20.0),
-                              child: Icon(
-                                Icons.search,
-                                color: defaultGreen,
-                              ),
-                            ),
-                            border: InputBorder.none),
-                        style: const TextStyle(color: defaultBlack),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Center(
+                      child: Container(
+                        height: Get.height * 0.05,
+                        width: Get.width * 0.7,
+                        decoration: BoxDecoration(
+                            border: Border.all(color: defaultBlue),
+                            borderRadius: BorderRadius.circular(30.0)),
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 20.0),
+                          child: TextFormField(
+                            controller: controller.cityNameSearch.value,
+                            cursorColor: defaultBlue,
+                            decoration: InputDecoration(
+                                suffixIcon: Padding(
+                                  padding: const EdgeInsets.only(left: 20.0),
+                                  child: IconButton(
+                                    onPressed: () => controller.selectedCity(),
+                                    icon: const Icon(Icons.search),
+                                    //color: defaultGreen,
+                                  ),
+                                ),
+                                border: InputBorder.none),
+                            style: const TextStyle(color: defaultBlack),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
+                  ],
                 ),
-              )
+              ),
             ],
           ),
         ),
@@ -89,7 +95,7 @@ class HomePage extends GetView<HomeController> {
               ),
               const CityInfo(),
               InkWell(
-                onTap: () => {Get.toNamed('/selected_city')},
+                //onTap: () => controller.selectedCity(),
                 child: SizedBox(
                   height: Get.height * 0.3,
                   width: Get.width,
@@ -98,7 +104,9 @@ class HomePage extends GetView<HomeController> {
                     scrollDirection: Axis.horizontal,
                     itemCount: 5,
                     itemBuilder: (context, index) {
-                      return const ContainerGoiania();
+                      return ContainerGoiania(
+                        tempC: controller.temp.value,
+                      );
                     },
                   ),
                 ),
@@ -108,6 +116,7 @@ class HomePage extends GetView<HomeController> {
               const SizedBox(
                 height: 20,
               ),
+              /*
               Row(
                 children: [
                   Padding(
@@ -135,6 +144,7 @@ class HomePage extends GetView<HomeController> {
                   },
                 ),
               )
+              */
             ],
           ),
         ),

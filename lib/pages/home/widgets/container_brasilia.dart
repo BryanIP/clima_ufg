@@ -40,9 +40,10 @@ class ContainerBrasilia extends GetWidget<HomeController> {
                     controller.temp < 30.0 ? defaultBlue : defaultRed,
                     controller.temp < 30.0 ? defaultGreen : defaultYellow
                   ])),
+              /*
               child: Center(
                 child: Obx(() => Text(
-                      '${controller.humidity}°',
+                      '${controller.humidity.value}%',
                       style: const TextStyle(
                           fontSize: 25.0,
                           fontWeight: FontWeight.bold,
@@ -55,6 +56,7 @@ class ContainerBrasilia extends GetWidget<HomeController> {
                           ]),
                     )),
               ),
+              */
             ),
           )
         ],

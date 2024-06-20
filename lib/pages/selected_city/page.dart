@@ -1,15 +1,18 @@
 import 'package:clima_ufg/core/colors.dart';
 import 'package:clima_ufg/pages/home/widgets/city_info.dart';
 import 'package:clima_ufg/pages/home/widgets/container_goiania.dart';
+import 'package:clima_ufg/pages/selected_city/controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class SelectedCity extends GetView {
+class SelectedCity extends GetView<SelectedCityController> {
   const SelectedCity({super.key});
 
   @override
   Widget build(BuildContext context) {
+    Get.lazyPut(() => SelectedCityController());
     return SafeArea(
       child: Material(
         child: Container(
@@ -23,7 +26,7 @@ class SelectedCity extends GetView {
                 width: Get.width,
                 decoration: BoxDecoration(
                     gradient: LinearGradient(
-                        transform: const GradientRotation(-0.5),
+                        transform: const GradientRotation(-0.4),
                         colors: [
                           defaultGreen.withOpacity(0.4),
                           defaultBlue.withOpacity(0.7)
@@ -32,13 +35,51 @@ class SelectedCity extends GetView {
                         bottomRight: Radius.circular(50.0))),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(20.0),
                       child: Column(
                         children: [
                           const CityInfo(),
-                          const ContainerGoiania(),
+                          Obx(() =>
+                              ContainerGoiania(tempC: controller.tempC.value)),
+                          Obx(() => Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      const Icon(Icons.water_sharp),
+                                      Text('${controller.humidity}%')
+                                    ],
+                                  ),
+                                  Column(
+                                    children: [
+                                      const Icon(
+                                        Icons.water_drop,
+                                        color: defaultWhite,
+                                      ),
+                                      Text('${controller.preciptation}%')
+                                    ],
+                                  ),
+                                  Column(
+                                    children: [
+                                      const Icon(Icons.thermostat),
+                                      Text('${controller.feelsLike} °C')
+                                    ],
+                                  ),
+                                  Column(
+                                    children: [
+                                      const Icon(Icons.heat_pump),
+                                      Text('${controller.uvIndex}')
+                                    ],
+                                  ),
+                                ],
+                              )),
                           Padding(
                             padding: const EdgeInsets.all(20.0),
                             child: Row(
@@ -51,9 +92,9 @@ class SelectedCity extends GetView {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.all(20.0),
+                            padding: const EdgeInsets.all(10.0),
                             child: Text(
-                              'Goiânia é a capital do estado de Goiás, no Brasil, e foi fundada em 24 de outubro de 1933. É uma cidade planejada, concebida para substituir a antiga capital estadual, Vila Boa, atual Cidade de Goiás. A construção de Goiânia foi parte de um esforço para modernizar e desenvolver a região central do Brasil, promovido pelo então governador Pedro Ludovico Teixeira.',
+                              'Goiânia é a capital do estado de Goiás, localizado no centro-oeste do Brasil. Fundada em 1933, a cidade foi planejada e construída para ser a nova capital do estado, substituindo a antiga cidade de Goiás. Goiânia é conhecida por seu design urbano moderno, com avenidas largas, praças arborizadas e uma infraestrutura bem desenvolvida',
                               style: GoogleFonts.raleway(
                                   fontSize: 15.0, fontWeight: FontWeight.bold),
                               textAlign: TextAlign.justify,
