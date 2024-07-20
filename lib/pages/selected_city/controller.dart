@@ -5,18 +5,14 @@ import 'package:get/get.dart';
 class SelectedCityController extends GetxController {
   final ApiRest apiRest = ApiRest();
 
-  final tempC = 30.0.obs;
+  final tempC = 0.0.obs;
   final humidity = 0.obs;
   final uvIndex = 0.0.obs;
   final feelsLike = 0.0.obs;
   final preciptation = 0.0.obs;
+  final city = ''.obs;
 
-  @override
-  void onInit() {
-    super.onInit();
-  }
-
-  void fetchWeaterData(String cityName) async {
+  fetchWeaterData(String cityName) async {
     try {
       final WeatherModel weatherData = await apiRest.getWeatherData(cityName);
       final current = weatherData.current;
@@ -26,6 +22,7 @@ class SelectedCityController extends GetxController {
       uvIndex.value = current.uv;
       feelsLike.value = current.feelslikeC;
       preciptation.value = current.precipMm;
+      city.value = weatherData.location.name;
     } catch (e) {
       print('Erro ao buscar os dados: $e');
     }

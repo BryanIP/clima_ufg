@@ -1,27 +1,27 @@
 import 'package:clima_ufg/api/api_rest.dart';
 import 'package:clima_ufg/pages/home/models.dart';
-import 'package:clima_ufg/pages/selected_city/controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 
+import '../selected_city/controller.dart';
+
 class HomeController extends GetxController {
   final menuIndex = 1.obs;
-  final temp = 30.0.obs;
+  final temp = 0.0.obs;
 
   final ApiRest apiRest = ApiRest();
   final cityNameSearch = TextEditingController().obs;
 
   @override
-  void onInit() {
+  void onInit() async {
     menuIndex.value = 1;
-    temp.value = 30.0;
-    fetchWeaterData('goiania');
     FlutterNativeSplash.remove();
+    await fetchWeaterData('goiania');
     super.onInit();
   }
 
-  void fetchWeaterData(String cityName) async {
+  fetchWeaterData(String cityName) async {
     try {
       final WeatherModel weatherData = await apiRest.getWeatherData(cityName);
       final current = weatherData.current;
