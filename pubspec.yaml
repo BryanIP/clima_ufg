@@ -1,5 +1,5 @@
 name: clima_ufg
-description: "A new Flutter project."
+description: "Projeto Clima UFG do minicurso Mobile Week 2.0."
 publish_to: 'none'
 version: 0.1.0
 
@@ -23,18 +23,18 @@ dev_dependencies:
   flutter_lints: ^3.0.0
 
 flutter_native_splash:
-  color: "#121212"
-  image: assets/ufg_logo.png
-  branding: assets/ufg_logo.png
-  color_dark: "#121212"
-  image_dark: assets/ufg_logo.png
-  branding_dark: assets/ufg_logo.png
+  color: "#FCFCFC"
+  image: assets/emoji_logo.png
+  branding: assets/emoji_logo.png
+  color_dark: "#FCFCFC"
+  image_dark: assets/emoji_logo.png
+  branding_dark: assets/emoji_logo.png
 
   android_12:
-    image: assets/ufg_logo.png
-    icon_background_color: "#121212"
-    image_dark: assets/ufg_logo.png
-    icon_background_color_dark: "#121212"
+    image: assets/emoji_logo.png
+    icon_background_color: "#FCFCFC"
+    image_dark: assets/emoji_logo.png
+    icon_background_color_dark: "#FCFCFC"
 
   web: false
 
@@ -42,7 +42,7 @@ flutter_launcher_icons:
   flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/ufg_logo.png"
+  image_path: "assets/emoji_logo.png"
   min_sdk_android: 21 # android min sdk min:16, default 21
 
 
@@ -53,5 +53,5 @@ flutter:
   assets:
     - assets/menu_superior.png
     - assets/pin.png
-    - assets/ufg_logo.png
+    - assets/emoji_logo.png
     - .env
