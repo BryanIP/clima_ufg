@@ -11,13 +11,14 @@ class HomeController extends GetxController {
   final temp = 0.0.obs;
 
   final ApiRest apiRest = ApiRest();
+  final defaultCityName = 'goiania';
   final cityNameSearch = TextEditingController().obs;
 
   @override
   void onInit() async {
     menuIndex.value = 1;
     FlutterNativeSplash.remove();
-    await fetchWeaterData('goiania');
+    await fetchWeaterData(defaultCityName);
     super.onInit();
   }
 
@@ -33,9 +34,11 @@ class HomeController extends GetxController {
   }
 
   selectedCity() async {
+    final cityName = cityNameSearch.value.text.isEmpty
+        ? defaultCityName
+        : cityNameSearch.value.text;
     Get.lazyPut(() => SelectedCityController());
-    Get.find<SelectedCityController>()
-        .fetchWeaterData(cityNameSearch.value.text);
+    Get.find<SelectedCityController>().fetchWeaterData(cityName);
     Get.toNamed('/selected_city');
   }
 

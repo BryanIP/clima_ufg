@@ -86,7 +86,7 @@ class HomePage extends GetView<HomeController> {
               ),
               const CityInfo(),
               InkWell(
-                //onTap: () => controller.selectedCity(),
+                onTap: () => controller.selectedCity(),
                 child: SizedBox(
                   height: Get.height * 0.3,
                   width: Get.width,
