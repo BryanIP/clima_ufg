@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:clima_ufg/pages/home/models.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -18,7 +19,12 @@ class ApiRest extends GetxController {
       final WeatherModel weatherData = WeatherModel.fromJson(data);
       return weatherData;
     } else {
-      throw Exception('Algo de errado não está certo.');
+      switch (response.statusCode) {
+        case 400 || 401 || 403:
+          throw HttpException(response.body);
+        default:
+          throw Exception('Algo de errado não está certo.');
+      }
     }
   }
 }

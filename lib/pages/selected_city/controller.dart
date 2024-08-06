@@ -1,6 +1,12 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:clima_ufg/api/api_rest.dart';
 import 'package:clima_ufg/pages/home/models.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
+
+import '../../core/utils.dart';
 
 class SelectedCityController extends GetxController {
   final ApiRest apiRest = ApiRest();
@@ -23,8 +29,30 @@ class SelectedCityController extends GetxController {
       feelsLike.value = current.feelslikeC;
       preciptation.value = current.precipMm;
       city.value = weatherData.location.name;
+    } on HttpException catch (err) {
+      Get.back();
+
+      final Map<String, dynamic> errors = jsonDecode(err.message);
+      final code = errors['error']['code'];
+
+      switch (code) {
+        case 1003:
+          showWarning('Parâmetro Cidade não informado.');
+          break;
+        case 1006:
+          showWarning('Cidade não encontrada.');
+          break;
+        default:
+          if (kDebugMode) {
+            showError(err.message);
+            print(err.message);
+          }
+      }
     } catch (e) {
-      print('Erro ao buscar os dados: $e');
+      if (kDebugMode) {
+        showError(e.toString());
+        print('Erro ao buscar os dados: $e');
+      }
     }
   }
 }
