@@ -82,20 +82,27 @@ class SelectedCity extends GetView<SelectedCityController> {
                             padding: const EdgeInsets.all(20.0),
                             child: Row(
                               children: [
-                                Text(
-                                  'Descrição',
-                                  style: GoogleFonts.alatsi(fontSize: 20.0),
+                                Obx(
+                                  () => Text(
+                                    controller.description.value.isNotEmpty
+                                        ? 'Descrição'
+                                        : '',
+                                    style: GoogleFonts.alatsi(fontSize: 20.0),
+                                  ),
                                 ),
                               ],
                             ),
                           ),
                           Padding(
                             padding: const EdgeInsets.all(10.0),
-                            child: Text(
-                              'Goiânia é a capital do estado de Goiás, localizado no centro-oeste do Brasil. Fundada em 1933, a cidade foi planejada e construída para ser a nova capital do estado, substituindo a antiga cidade de Goiás. Goiânia é conhecida por seu design urbano moderno, com avenidas largas, praças arborizadas e uma infraestrutura bem desenvolvida',
-                              style: GoogleFonts.raleway(
-                                  fontSize: 15.0, fontWeight: FontWeight.bold),
-                              textAlign: TextAlign.justify,
+                            child: Obx(
+                              () => Text(
+                                '${controller.description}',
+                                style: GoogleFonts.raleway(
+                                    fontSize: 15.0,
+                                    fontWeight: FontWeight.bold),
+                                textAlign: TextAlign.justify,
+                              ),
                             ),
                           ),
                         ],

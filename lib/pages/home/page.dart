@@ -56,13 +56,20 @@ class HomePage extends GetView<HomeController> {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 20.0),
                       child: TextFormField(
+                        onFieldSubmitted: (value) {
+                          controller.searchOnEnter();
+                        },
                         controller: controller.cityNameSearch.value,
                         cursorColor: defaultBlue,
                         decoration: InputDecoration(
                             suffixIcon: Padding(
                               padding: const EdgeInsets.only(left: 20.0),
                               child: IconButton(
-                                onPressed: () => controller.selectedCity(),
+                                onPressed: () => {
+                                  if (controller
+                                      .cityNameSearch.value.text.isNotEmpty)
+                                    {controller.selectedCity()}
+                                },
                                 icon: const Icon(Icons.search),
                               ),
                             ),
@@ -77,6 +84,7 @@ class HomePage extends GetView<HomeController> {
           ),
         ),
         body: SingleChildScrollView(
+          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.start,

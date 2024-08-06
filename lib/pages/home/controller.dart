@@ -42,5 +42,11 @@ class HomeController extends GetxController {
     Get.toNamed('/selected_city');
   }
 
+  void searchOnEnter() {
+    if (cityNameSearch.value.text.isNotEmpty) {
+      selectedCity();
+    }
+  }
+
   changeIndex(index) => menuIndex.value = index;
 }

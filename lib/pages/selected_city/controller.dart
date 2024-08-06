@@ -17,9 +17,17 @@ class SelectedCityController extends GetxController {
   final feelsLike = 0.0.obs;
   final preciptation = 0.0.obs;
   final city = ''.obs;
+  final description = ''.obs;
 
   fetchWeaterData(String cityName) async {
     try {
+      if (cityName == 'goiania') {
+        description.value =
+            'Goiânia é a capital do estado de Goiás, localizado no centro-oeste do Brasil. Fundada em 1933, a cidade foi planejada e construída para ser a nova capital do estado, substituindo a antiga cidade de Goiás. Goiânia é conhecida por seu design urbano moderno, com avenidas largas, praças arborizadas e uma infraestrutura bem desenvolvida';
+      } else {
+        description.value = '';
+      }
+
       final WeatherModel weatherData = await apiRest.getWeatherData(cityName);
       final current = weatherData.current;
 
